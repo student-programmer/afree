@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: false,
 	env: {
-		APP_BASE_URL: process.env.APP_BASE_URL,
+		APP_BASE_URL: 'https://api.afree.ltd',
 	},
 	images: {
 		domains: ['tgminiapp.afree.ltd'],
