@@ -22,7 +22,7 @@ services:
     ports:
       - '3000:3000'  # Порт для доступа к веб-приложению
     environment:
-      APP_BASE_URL: 'https://tgminiapp.afree.ltd'  # Укажите ваш базовый URL
+      APP_BASE_URL: 'https://api.afree.ltd'  # Укажите ваш базовый URL
     <<: [*common-network, *common-logging]
 
   bot-afree:
