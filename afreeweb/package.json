@@ -1,0 +1,37 @@
+{
+  "name": "afreeweb",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tma.js/launch-params": "^1.0.1",
+    "@tma.js/sdk": "^2.5.0",
+    "@tma.js/sdk-react": "^2.2.4",
+    "@tma.js/solid-router-integration": "^5.0.2",
+    "antd": "^5.18.1",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "next": "^13.5.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
+    "react-query": "^3.39.3",
+    "swiper": "^11.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "postcss": "^8",
+    "sass": "^1.77.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

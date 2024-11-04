@@ -1,0 +1,36 @@
+{
+	"download": {
+		"photo": "",
+		"file": "",
+		"text": "Добро пожаловать, жми Соцсеть для запуска",
+		"buttons": [
+			[
+				{
+					"text": "📱 Скачать приложение iOS",
+					"callback": "",
+					"url": "https://apps.apple.com/us/app/afree/id6474979240"
+				}
+			],
+			[
+				{
+					"text": "📱 Скачать приложение Android",
+					"callback": "",
+					"url": "https://play.google.com/store/apps/details?id=com.arround.afree&hl=en"
+				}
+			],
+			[
+				{
+					"text": " ❌ Выйти",
+					"callback": "",
+					"url": "https://telegraf.js.org/classes/Telegram.html"
+				}
+			]
+		]
+	},
+	"greeting": {
+		"photo": "",
+		"file": "",
+		"text": "Поделитесь вашим номером телефона, чтобы управлять учётной записью с помощью бота",
+		"buttons": []
+	}
+}

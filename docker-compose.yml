@@ -1,0 +1,62 @@
+version: '3.9'
+
+x-common-logging: &common-logging
+    logging:
+      # limit logs retained on host to 25MB
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+x-common-network: &common-network
+    networks:
+        - afree
+
+services:
+  bot-afree:
+    image: image-afree
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bot-afree
+    restart: always
+    depends_on:
+      postgres-afree:
+        condition: service_healthy
+    ports:
+      - '127.0.0.1:3005:3005'
+      - '127.0.0.1:3006:3006'
+    environment:
+      DATABASE_URL: 'postgres://postgres:password@postgres-afree:5432/afree'
+      DB_NAME: afree
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_HOST: postgres-afree
+      BOT_TOKEN: '7145935101:AAGewEH10P1OMPAJG6zjs09n8AH3V3wh9uQ'
+      HOOKPORT: 3005
+      PORT: 3006
+      DOMAIN: 'https://sewb.swc.capital'
+      WEB_APP: 'https://sew.swc.capital'
+    <<: [*common-network, *common-logging]
+
+  postgres-afree:
+    image: postgres:16.1-alpine3.19
+    container_name: bot-postgres-afree
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: smart-eduction
+      PGDATA: /data/postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    healthcheck:
+      test: pg_isready -U postgres
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+       - /data/afree/data/postgres:/data/postgres
+    <<: [*common-network, *common-logging]
+
+networks:
+  afree:
+    driver: bridge

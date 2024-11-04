@@ -1,0 +1,79 @@
+.description_block {
+	position: absolute;
+	bottom: 100px;
+	left: 20px;
+	color: white;
+	display: flex;
+	gap: 16px;
+	height: 40px;
+	align-items: center;
+}
+
+.avatar {
+	border-radius: 10px;
+}
+
+.message_text {
+	position: absolute;
+	bottom: 30px;
+	left: 20px;
+	color: white;
+}
+
+.metrics {
+	width: 32px;
+	height: 162px;
+	position: absolute;
+	right: 20px;
+	bottom: 30px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.metrics span p {
+	text-align: center;
+	font-size: 13px;
+}
+/* src/components/Video.module.scss */
+.video_wrapper {
+	height: 100vh;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.swiper-container {
+	height: 100%;
+	width: 100%;
+}
+
+.swiper-slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.item_wrapper {
+	// position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.video {
+	width: 100%;
+	// height: 100%;
+	// object-fit: cover;
+}
+
+/* Остальные стили остаются без изменений */
+.hint{
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%, -50%);
+	z-index:10;
+	transition: transform 0.3s ease-out;
+}
