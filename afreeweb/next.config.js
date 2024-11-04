@@ -5,7 +5,7 @@ const nextConfig = {
 		APP_BASE_URL: process.env.APP_BASE_URL,
 	},
 	images: {
-		domains: [process.env.IMAGE_DOMAIN],
+		domains: ['tgminiapp.afree.ltd'],
 	},
 };
 
