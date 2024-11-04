@@ -9,43 +9,52 @@ x-common-logging: &common-logging
         max-file: "3"
 x-common-network: &common-network
     networks:
-        - afree
+        - afree-network
 
 services:
-  bot-afree:
-    image: image-afree
+  web-afree:
+    image: image-afree-web
     build:
-      context: .
+      context: ./afreeweb  # Путь к папке с веб-приложением
+      dockerfile: Dockerfile
+    container_name: web-afree
+    restart: always
+    ports:
+      - '3000:3000'  # Порт для доступа к веб-приложению
+    environment:
+      APP_BASE_URL: 'https://tgminiapp.afree.ltd'  # Укажите ваш базовый URL
+    <<: [*common-network, *common-logging]
+
+  bot-afree:
+    image: image-afree-bot
+    build:
+      context: ./afreebot  # Путь к папке с ботом
       dockerfile: Dockerfile
     container_name: bot-afree
     restart: always
-    depends_on:
-      postgres-afree:
-        condition: service_healthy
     ports:
-      - '127.0.0.1:3005:3005'
-      - '127.0.0.1:3006:3006'
+      - '3001:3000'  # Порт для доступа к боту, измените если необходимо
     environment:
-      DATABASE_URL: 'postgres://postgres:password@postgres-afree:5432/afree'
+      DATABASE_URL: 'postgres://postgres:password@postgres-afree-db:5432/afree'
       DB_NAME: afree
       DB_USER: postgres
       DB_PASSWORD: password
-      DB_HOST: postgres-afree
+      DB_HOST: postgres-afree-db
       BOT_TOKEN: '7145935101:AAGewEH10P1OMPAJG6zjs09n8AH3V3wh9uQ'
-      HOOKPORT: 3005
-      PORT: 3006
-      DOMAIN: 'https://sewb.swc.capital'
-      WEB_APP: 'https://sew.swc.capital'
+      HOOKPORT: 3000
+      PORT: 3000
+      DOMAIN: 'https://tgminiapp.afree.ltd'  # Укажите ваш домен
+      WEB_APP: 'https://tgminiapp.afree.ltd'  # Укажите ваш веб-домен
     <<: [*common-network, *common-logging]
 
-  postgres-afree:
+  postgres-afree-db:
     image: postgres:16.1-alpine3.19
-    container_name: bot-postgres-afree
+    container_name: postgres-afree-db
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: smart-eduction
+      POSTGRES_DB: afree
       PGDATA: /data/postgres
       POSTGRES_HOST_AUTH_METHOD: trust
     healthcheck:
@@ -54,9 +63,9 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-       - /data/afree/data/postgres:/data/postgres
+      - /data/afree/data/postgres:/data/postgres  # Проверьте путь к данным
     <<: [*common-network, *common-logging]
 
 networks:
-  afree:
+  afree-network:
     driver: bridge
