@@ -5,7 +5,7 @@ const nextConfig = {
 		APP_BASE_URL: 'https://api.afree.ltd',
 	},
 	images: {
-		domains: ['tgminiapp.afree.ltd'],
+		domains: ['api.afree.ltd'],
 	},
 };
 

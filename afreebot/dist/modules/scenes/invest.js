@@ -10,10 +10,10 @@
 // 		await MessagesService.sendMessage(ctx, 'invest');
 // 		await ctx.answerCbQuery();
 // 	});
-// 	bot.action('investscreen', async ctx => {
-// 		await ctx.scene.enter('investHandler');
-// 		await ctx.answerCbQuery();
-// 	});
+// bot.action('investscreen', async ctx => {
+// 	await ctx.scene.enter('investHandler');
+// 	await ctx.answerCbQuery();
+// });
 // }
 // export const investHandler: Scenes.WizardScene<MyWizardContext> =
 // 	new Scenes.WizardScene(

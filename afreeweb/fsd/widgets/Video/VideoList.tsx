@@ -77,8 +77,8 @@ const VideoList: React.FC = () => {
 						<div style={{ height: '100vh' }}>
 							<VideoItem
 								videoUrl={video.media.url}
-								username={video.from.username}
-								avatar={video.from.avatar}
+								username={video.profile.username}
+								avatar={video.profile.avatar}
 								description={video.message}
 								preview={video.url_preview}
 								like={video.likes.likes_count}

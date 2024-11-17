@@ -20,14 +20,23 @@ bot.use((0, telegraf_1.session)());
 bot.use(stage.middleware());
 bot.use(menuScenes_1.menuSceneMiddleware);
 (0, events_1.events)(bot);
+// bot
+// 	.launch({
+// 		webhook: {
+// 			domain: process.env.DOMAIN || '',
+// 			port: parseInt(process.env.HOOKPORT || ''),
+// 		},
+// 	})
+// 	.then(() =>
+// 		console.log(
+// 			'Webhook bot listening on port',
+// 			parseInt(process.env.HOOKPORT || '')
+// 		)
+// 	);
 bot
-    .launch({
-    webhook: {
-        domain: process.env.DOMAIN || '',
-        port: parseInt(process.env.HOOKPORT || ''),
-    },
-})
-    .then(() => console.log('Webhook bot listening on port', parseInt(process.env.HOOKPORT || '')));
+    .launch()
+    .then(() => console.log('Bot is running...'))
+    .catch(error => console.error('Error launching bot:', error));
 app.listen(process.env.PORT, () => {
     console.log(`Server is running at http://localhost:${process.env.PORT}`);
 });
