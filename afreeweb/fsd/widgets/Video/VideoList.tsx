@@ -56,6 +56,19 @@ const VideoList: React.FC = () => {
 			});
 		}
 	}, [data]);
+
+
+	useEffect(() => {
+		if (userInteracted) {
+			videoRefs.current.forEach(video => {
+				if (video) {
+					video.play().catch(err => console.error('Play error:', err));
+				}
+			});
+		}
+	}, [userInteracted]);
+
+
 	const loadMoreVideos = useCallback(() => {
 		setOffset(prevOffset => prevOffset + 10);
 		console.log(offset);
@@ -71,6 +84,7 @@ const VideoList: React.FC = () => {
 				// onSlideChange={() => console.log('slide change')}
 				onReachEnd={loadMoreVideos}
 				style={{ height: '100vh' }}
+				onClick={() => setUserInteracted(true)}
 			>
 				{videos.map((video, index) => (
 					<SwiperSlide key={index}>
